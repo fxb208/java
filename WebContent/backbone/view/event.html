@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+<body>
+	<p id="view">  
+    	<input type="button" value="Create" id="create" />  
+    	<input type="button" value="Read" id="read" />  
+    	<input type="button" value="Update" id="update" />  
+    	<input type="button" value="Delete" id="delete" />  
+	</p>  
+  <script type="text/javascript">
+  var MyView = Backbone.View.extend({  
+      el : '#view',  
+      events : {  
+          'click #create' : 'createData',  
+          'click #read' : 'readData',  
+          'click #update' : 'updateData',  
+          'click #delete' : 'deleteData'  
+      },  
+      createData : function() {  
+          // todo  
+          alert("createData");
+      },  
+      readData : function() {  
+          // todo
+          alert("readData");
+      },  
+      updateData : function() {  
+          // todo
+          alert("updateData");
+      },  
+      deleteData : function() {  
+          // todo  
+          alert("deleteData");
+      }  
+  });  
+  var view = new MyView();  
+  </script>
+</body>
+</html>

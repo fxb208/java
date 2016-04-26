@@ -1,0 +1,2 @@
+jxl:jxl.jar
+poi:commons-codec-1.5.jar,poi-3.9.jar

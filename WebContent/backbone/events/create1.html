@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+<body>
+	<p id="view">  
+    	<input type="button" value="Create" id="create" />  
+    	<input type="button" value="Read" id="read" />  
+    	<input type="button" value="Update" id="update" />  
+    	<input type="button" value="Delete" id="delete" />  
+	</p>  
+  <script type="text/javascript">
+//创建一个Model的实例  
+  var m = new Backbone.Model();  
+    
+  // 将监听函数绑定到m对象的自定义事件custom中  
+  m.on('custom', function(index) {  
+      // 监听函数接收并显示参数index  
+      alert(index);  
+  });  
+    
+  // 循环触发m对象的custom事件  
+  for(var i = 0; i < 3; i++) {  
+      m.trigger('custom', i);  
+  }  
+    
+  // 从m对象的custom事件中移除已绑定的所有监听函数  
+  m.off('custom');  
+    
+  // 试着再次触发custom事件  
+  m.trigger('custom', i);  
+  </script>
+</body>
+</html>

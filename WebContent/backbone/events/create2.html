@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+<body>
+	<p id="view">  
+    	<input type="button" value="Create" id="create" />  
+    	<input type="button" value="Read" id="read" />  
+    	<input type="button" value="Update" id="update" />  
+    	<input type="button" value="Delete" id="delete" />  
+	</p> 
+	<!-- all是Backbone中一个特殊的事件，它在当前对象触发任何事件之后，都会被自动触发。
+	（你也可以通过trigger直接触发all事件）
+　　	你需要注意监听函数的调用顺序，all事件总会在其它事件中的监听函数都执行完毕之后触发，
+	同一个事件中如果绑定了多个监听函数，那它们将按照函数绑定时的顺序依次调用。  -->
+  <script type="text/javascript">
+//创建一个Model的实例  
+  var m = new Backbone.Model();  
+    
+  // 将监听函数绑定到m对象的all事件中  
+  m.on('all', function() {  
+      alert('all');  
+  });  
+  // 将监听函数绑定到m对象的自定义事件show中  
+  m.on('show', function() {  
+      alert('show title');  
+  });  
+  // 将另一个监听函数绑定到m对象的自定义事件show中  
+  m.on('show', function() {  
+      alert('show content');  
+  });  
+  // 将监听函数绑定到m对象的自定义事件hide中  
+  m.on('hide', function() {  
+      alert('hide');  
+  });  
+    
+  // 触发m对象的show事件和hide事件  
+  m.trigger('show');  
+  m.trigger('hide');  
+  </script>
+</body>
+</html>

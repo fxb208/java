@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+
+<link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <table id="js-id-gists" class="table">
+    <thead><th>description</th><th>URL</th><th>created_at</th><th></th></thead>
+    <tbody></tbody>
+  </table>
+  <script type="text/javascript">
+ /*  var Gist = Backbone.Model.extend({
+    url: 'https://api.github.com/gists/public',
+    parse: function (response) {
+      return response[0];
+    }
+  }),
+    gist = new Gist();
+
+  var GistRow = Backbone.View.extend({
+    el: 'tbody',
+    MODEL: gist,
+    events: {
+      'click a': 'replaceURL'
+    },
+    replaceURL: function () {
+      this.MODEL.set('url', 'http://dmyz.org');
+    },
+    initialize: function () {
+      this.listenTo(this.MODEL, 'change', this.render);
+    },
+    render: function () {
+      var model = this.MODEL,
+        tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + model.get('description') + '</td><td>' + model.get('url') + '</td><td>' + model.get('created_at') + '</td><td><a href="javascript:void(0)">&reg;</a></td>';
+      this.el.innerHTML = tr.outerHTML;
+      return this;
+    }
+  });
+  var tr = new GistRow();
+  gist.fetch(); */
+  
+  /* 替换之前代码的JS部分(LINE16~45) */
+  var Gist = Backbone.Model.extend(),
+    Gists = Backbone.Model.extend({
+      url: 'https://api.github.com/gists/public',
+      parse: function (response) {
+        return response;
+      }
+    }),
+    gists = new Gists();
+
+  var GistRow = Backbone.View.extend({
+    tagName: 'tr',
+    render: function (object) {
+      var model = new Gist(object);
+      this.el.innerHTML = '<td>' + model.get('description') + '</td><td>'+ model.get('url') + '</td><td>' + model.get('created_at') + '</td><td></td>'
+      return this;
+    }
+  });
+
+  var GistsView = Backbone.View.extend({
+    el: 'tbody',
+    model: gists,
+    initialize: function () {
+      this.listenTo(this.model, 'change', this.render);
+    },
+    render: function () {
+      var html = '';
+      _.forEach(this.model.attributes, function (object) {
+        var tr = new GistRow();
+        html += tr.render(object).el.outerHTML;
+      });
+      this.el.innerHTML = html;
+      return this;
+    }
+  });
+  var gistsView = new GistsView();
+  gists.fetch();
+  </script>
+</body>
+</html>
